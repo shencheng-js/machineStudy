@@ -31,6 +31,9 @@ negetive = data[data.admitted.isin(['0'])]  # 0
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
+
+
+
 #代价函数
 def cost(theta, X, y):
     first = (-y) * np.log(sigmoid(X @ theta))
