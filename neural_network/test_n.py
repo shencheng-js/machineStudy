@@ -10,10 +10,17 @@ import scipy.optimize as opt
 
 if __name__ == "__main__":
     # 激活函数
-    def sigmoid(z):
-        return 1 / (1 + np.exp(-z))
+    # def sigmoid(z):
+    #     return 1 / (1 + np.exp(-z))
+    #
+    #
+    # x1 = np.arange(-10, 10, 0.1)
+    # plt.plot(x1, sigmoid(x1), c='r')
+    # plt.show()
 
-
-    x1 = np.arange(-10, 10, 0.1)
-    plt.plot(x1, sigmoid(x1), c='r')
-    plt.show()
+    temp = np.matrix([[1,2,3],[4,5,6],[7,8,9]])
+    print(temp.shape)
+    # print(np.sum(temp[:,1:]**2))
+    print(temp@temp)
+    result = np.sum(temp[1:,1:]**2)
+    print(str(result))

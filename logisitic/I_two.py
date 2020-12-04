@@ -75,8 +75,8 @@ z = feature_mapping(xx.ravel(), yy.ravel(), 6).values
 z = z @ final_theta
 z = z.reshape(xx.shape)
 
-plt.contour(xx, yy, z, 0)
-plt.ylim(-.8, 1.2)
+# plt.contour(xx, yy, z, 0)
+# plt.ylim(-.8, 1.2)
 
 # print(data)
 positive = data[data.accept.isin(['1'])]  # 1
@@ -88,11 +88,12 @@ fig, ax = plt.subplots(figsize=(6, 5))
 ax.scatter(positive['test1'], positive['test2'], c='b', label='Admitted')
 ax.scatter(negetive['test1'], negetive['test2'], s=50, c='r', marker='x', label='Not Admitted')
 # 设置图例显示在图的上方
-box = ax.get_position()
-ax.set_position([box.x0, box.y0, box.width, box.height * 0.8])
+# box = ax.get_position()
+# ax.set_position([box.x0, box.y0, box.width, box.height * 0.8])
 ax.legend(loc='center left', bbox_to_anchor=(0.2, 1.12), ncol=3)
 # 设置横纵坐标名
 ax.set_xlabel('test 1 Score')
 ax.set_ylabel('test 2 Score')
-
+plt.contour(xx, yy, z, 0)
+plt.ylim(-.8, 1.2)
 plt.show()

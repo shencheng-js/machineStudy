@@ -96,10 +96,14 @@ def one_vs_all(X, y, l, K):
 
     for i in range(1, K + 1):
         theta = np.zeros(X.shape[1])
+
+        #计算第i个种类时，每一种只有是或者不是的可能
         y_i = np.array([1 if label == i else 0 for label in y])
 
         ret = minimize(fun=regularized_cost, x0=theta, args=(X, y_i, l), method='TNC',
                        jac=regularized_gradient, options={'disp': True})
+
+        #送入第i行参数
         all_theta[i - 1, :] = ret.x
 
     return all_theta
@@ -118,9 +122,16 @@ def predict_all(X, all_theta):
 
 
 raw_X, raw_y = load_data('ex3data1.mat')
+y = raw_y
+print(raw_X.shape)
+
+#测试画  20X20的
+# print(raw_X[0].reshape([20,20]))
+
+
 X = np.insert(raw_X, 0, 1, axis=1) # (5000, 401)
 y = raw_y.flatten()  # 这里消除了一个维度，方便后面的计算 or .reshape(-1) （5000，）
-
+#
 all_theta = one_vs_all(X, y, 1, 10)
 # print(all_theta)  # 每一行是一个分类器的一组参数
 
