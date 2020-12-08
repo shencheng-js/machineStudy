@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def gaosi(x, x_i, k=2.5):  # k值是σ值，40对范围10以内的神经元有影响
+def gaosi(x, x_i, k=5.5):  # k值是σ值，40对范围10以内的神经元有影响
     return np.exp(-1.0 * np.power((x - x_i), 2) / k * 2)
 
 
