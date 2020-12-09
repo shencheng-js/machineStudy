@@ -63,7 +63,9 @@ def rand(activ, num=3):  # 随机激活神经元，控制在num个以内，可�
 
 
 def getzero():  # 获取100*100的二维数组
-    return [[0] * 100] * 100
+    ret = [([0]*100) for j in range(100)]
+    # return [[0] * 100] * 100
+    return ret
 
 
 def plot_result(data):
@@ -80,28 +82,27 @@ def plot_result(data):
 
 
 if __name__ == "__main__":
-    # pltgaosi()
-    size = 100
-    activlis = np.random.randint(low=0, high=2, size=size)
-    yuan = getzero()
-    #
-    # pltgaosi()
+    neuron_size = 100
+    activation_list = np.random.randint(low=0, high=2, size=size)
+
+    #获取激活累加数组
+    accumulation = get_zero()
+
     result = []
     for i in range(101):  # 训练100次
         for j in range(0, 100):
             if activlis[j] == 1:  # 如果是被激活的，刺激其他神经元
-                yuan = activ(yuan, j)  # 一次激活完成
+                accumulation = activ(yuan, j)  # 一次激活完成
 
         # print(yuan)
         # 一轮训练激活结束，找成功激活的神经元
-        activlis = getjihuo(yuan)  # 默认之前的无影响
+        activation_list = getjihuo(accumulation)  # 默认之前的无影响
         # 随机激活几个神经元
-        # activlis = rand(activlis)
+        activation_list = rand(activation_list)
 
         print("第" + str(i) + "轮训练结束，激活的神经元有")
-        # print(activlis)
-        result.append(activlis)
-        yuan = getzero()
+        print(activation_list)
+        result.append(activation_list)
+        accumulation = getzero()
 
     plot_result(data=result)
-    # print(result[0])
